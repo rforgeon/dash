@@ -1,0 +1,2 @@
+class LyftAuth < ApplicationRecord
+end
