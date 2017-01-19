@@ -1,2 +1,0 @@
-class LyftAuth < ApplicationRecord
-end

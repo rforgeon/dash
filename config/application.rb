@@ -12,6 +12,9 @@ require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
+gem 'rack-cors', :require => 'rack/cors'
+
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -25,14 +28,22 @@ module FlashDash
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
-    config.api_only = true
+  #   config.api_only = true
+   #
+  #  config.middleware.insert_before 0, Rack::Cors do
+  #    allow do
+  #      origins '*'
+  #      resource '*',
+  #        :headers => '*',
+  #        methods: [:get, :post, :put, :patch, :delete, :options, :head]
+  #    end
+  #  end
 
-    config.middleware.insert_before 0, "Rack::Cors" do
-     allow do
-       origins '*'
-       resource '*', :headers => :any, :methods => [:get, :post, :options]
-     end
-   end
-   
+   #
+  #  config.middleware.insert_before(Warden::Manager, ActionDispatch::Cookies)
+  #  config.middleware.insert_before(Warden::Manager, ActionDispatch::Session::CookieStore)
+  #  config.middleware.insert_before(Warden::Manager, ActionDispatch::Flash)
+
+
   end
 end

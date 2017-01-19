@@ -34,16 +34,34 @@ gem 'devise'
 #OAuth2
 gem 'oauth2'
 
+#OAuth
+gem 'oauth'
+
+#omniauth-oauth2
+gem 'omniauth'
+gem 'omniauth-oauth2', '1.3.1'
+
+#rest client
+gem 'rest-client'
+
+#open urls
+gem 'launchy'
+
+#interact w/ devise as API
+gem 'devise_token_auth'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'pry'
+  gem 'pry-byebug'
 end
 
 group :development do
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

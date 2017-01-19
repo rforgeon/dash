@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  resources :lyft_auths
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
-    devise_for :users
-    resources :lyft_auths
-    #/lyft_auths
 
+    mount_devise_token_auth_for 'User', at: 'auth', controllers: { omniauth_callbacks: "users/omniauth_callbacks" }, defaults: { format: :json }
 
+    namespace 'users' do
+      resources :user_identities, only: [:create]
+      get '/create_id', :to => "user_identities#create"
+
+    end
+
+    
 
 end
