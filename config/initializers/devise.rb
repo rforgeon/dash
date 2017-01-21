@@ -1,5 +1,3 @@
-require 'omniauth/strategies/lyft'
-
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -8,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'cd22f7769e7e7edf04ceaa15e1b144bbefa5e5ff33efddae03eea48b2391b69ff074a67aebf20f973a5a31d4ef70b228a93d9f5080829dcc79a0393396bf8119'
+  # config.secret_key = 'ed4a99cd10d0df37f8b2de9ae4ecdb5d51f41889ba2f24f2f88f0fe872f304bbdbd7eb724674c202209d1e9a6dc1a15002fd1dd4c76adb50c05e8346a84ee7c4'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -110,7 +108,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '19dd9446b00a752a0b93fcc8b37c631cea6cb2d0cc287277a2092dc419a7c60ea7773c162993e05d8d4b43113b051116bca798188f91f5f2242c0feb5a441c6a'
+  # config.pepper = '76a37e7cfe8239818f7c52d4ef284624b4482723f25238a07e82c74bdb0dad95917d8a1987663d532d72d16f4ab31ba5eebfca5a84f77be2b97ab0fe052e6d92'
 
   # Send a notification email when the user's password is changed
   # config.send_password_change_notification = false
@@ -241,7 +239,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html]
+  config.navigational_formats = ["*/*", :html, :json]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete
@@ -249,7 +247,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :lyft, ENV['LYFT_CLIENT_ID'], ENV['LYFT_CLIENT_SECRET'], scope: 'public rides.read profile offline'
+  #config.omniauth :lyft, ENV['LYFT_CLIENT_ID'], ENV['LYFT_CLIENT_SECRET'], scope: 'public rides.read profile offline'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -273,5 +271,5 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-
+  # config.http_authenticatable_on_xhr = false
 end

@@ -14,21 +14,21 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def redirect_callbacks
     #binding.pry
-    #before_action :authenticate_user!
 
+    redirect_to :controller => :user_identities, :action => :create
 
     #create user Identity
-    @auth = request.env['omniauth.auth']
-
-    #render json: @auth
-
-    #Find an identity here
-    @user_identity = UserIdentity.find_with_omniauth(@auth)
-
-    if @user_identity.nil?
-      # If no identity was found, create a brand new one here
-      @user_identity = UserIdentity.create_with_omniauth(@auth)
-    end
+    # @auth = request.env['omniauth.auth']
+    #
+    # #render json: @auth
+    #
+    # #Find an identity here
+    # @user_identity = UserIdentity.find_with_omniauth(@auth)
+    #
+    # if @user_identity.nil?
+    #   # If no identity was found, create a brand new one here
+    #   @user_identity = UserIdentity.create_with_omniauth(@auth)
+    # end
 
     # if user_signed_in?
     #   if @user_identity.user == current_user
@@ -50,7 +50,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     #   render json: "No user associated with the identity. Please finish registering"
     # end
 
-    render json: @user_identity
+    #render json: @user_identity
 
    end
 

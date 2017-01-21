@@ -1,9 +1,9 @@
-class Users::UserIdentitiesController < ApplicationController
+class UserIdentitiesController < ApplicationController
 
 
   def index
     identidies = []
-    @all = User_Identity.all
+    @all = UserIdentity.all
        @all.each do |identity|
          if identity.user == current_user
            identities << identity # show user's identities
@@ -12,7 +12,6 @@ class Users::UserIdentitiesController < ApplicationController
   end
 
   def create
-  binding.pry
 
   # auth = request.env['omniauth.auth']
   # # Find an identity here
