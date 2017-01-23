@@ -12,7 +12,7 @@ require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
-gem 'rack-cors', :require => 'rack/cors'
+#gem 'rack-cors', :require => 'rack/cors'
 
 
 # Require the gems listed in Gemfile, including any gems
@@ -34,7 +34,7 @@ module FlashDash
      allow do
        origins '*'
        resource '*',
-         :headers => '*',
+         :headers => :any,
          methods: [:get, :post, :put, :patch, :delete, :options, :head]
      end
    end

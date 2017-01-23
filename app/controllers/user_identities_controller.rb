@@ -13,6 +13,8 @@ class UserIdentitiesController < ApplicationController
 
   def create
 
+    render json: current_user
+
   # auth = request.env['omniauth.auth']
   # # Find an identity here
   # @user_identity = UserIdentity.find_with_omniauth(auth)

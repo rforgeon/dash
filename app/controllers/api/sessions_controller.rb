@@ -6,13 +6,20 @@ class SessionsController < DeviseController
   respond_to :json
 
   def create
+
+    # if bool
+    #   ....
+    # else self.resource.errors.add(:current_password, (params[:user][:current_password]).blank? ? :blank : :invalid) clean_up_passwords resource respond_with self.resource end end
+
     #build_resource
     resource = User.find_for_database_authentication(:email=>params[:user_login][:email])
     return invalid_login_attempt unless resource
 
-    if resource.valid_password?(params[:user][:password])
+    if resource.valid_password?(params[:user_login][:password])
       sign_in("user", resource)
-      render :json=> {:success=>true, :auth_token=>resource.authentication_token,  :email=>resource.email}
+      render :json=> {:success=>true,
+        #:auth_token=>resource.authentication_token,  
+        :email=>resource.email}
       return
     end
     invalid_login_attempt
