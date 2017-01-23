@@ -1,4 +1,4 @@
-class Api::SessionsController < DeviseController
+class SessionsController < DeviseController
   prepend_before_action :require_no_authentication, :only => [:create ]
   #include DeviseControllers::InternalHelpers
   before_action :ensure_params_exist
@@ -10,7 +10,7 @@ class Api::SessionsController < DeviseController
     resource = User.find_for_database_authentication(:email=>params[:user_login][:email])
     return invalid_login_attempt unless resource
 
-    if resource.valid_password?(params[:user_login][:password])
+    if resource.valid_password?(params[:user][:password])
       sign_in("user", resource)
       render :json=> {:success=>true, :auth_token=>resource.authentication_token,  :email=>resource.email}
       return

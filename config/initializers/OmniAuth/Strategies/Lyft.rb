@@ -5,7 +5,7 @@ module OmniAuth
     class Lyft < OmniAuth::Strategies::OAuth2
 
       # Give your strategy a name.
-      option :name, "lyft"
+      option :name, "Lyft"
 
       # This is where you pass the options you would pass when
       # initializing your consumer from the OAuth gem.
