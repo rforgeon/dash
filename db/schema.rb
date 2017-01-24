@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170116205755) do
+ActiveRecord::Schema.define(version: 20170124193725) do
 
   create_table "user_identities", force: :cascade do |t|
     t.string   "user_id"
@@ -46,6 +46,9 @@ ActiveRecord::Schema.define(version: 20170116205755) do
     t.text     "tokens"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.string   "lyft_token"
+    t.string   "lyft_refresh_token"
+    t.string   "lyft_expires_at"
     t.index ["email"], name: "index_users_on_email"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true

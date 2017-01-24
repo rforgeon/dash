@@ -1,4 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  before_action :authenticate_user!
 
   def lyft
     binding.pry
@@ -27,7 +28,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     #create user Identity
     @auth = request.env['omniauth.auth']
 
-    render json: @auth
+    render json: current_user
     #redirect_to "http://localhost:3001"
 
    #

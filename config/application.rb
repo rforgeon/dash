@@ -34,6 +34,7 @@ module FlashDash
      allow do
        origins '*'
        resource '*',
+        :headers => :any,
         :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
         :methods => [:get, :post, :options, :delete, :put]
      end
