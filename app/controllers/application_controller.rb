@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  #before_action :authenticate_user!
+  include DeviseTokenAuth::Concerns::SetUserByToken
+
+  respond_to :json
+
+
+
+  #before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 

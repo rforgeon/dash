@@ -2,13 +2,15 @@ class Users::UserIdentitiesController < ApplicationController
 
 
   def index
-    identidies = []
-    @all = User_Identity.all
-       @all.each do |identity|
-         if identity.user == current_user
-           identities << identity # show user's identities
-         end
-    @identities = identities
+    # identidies = []
+    # @all = UserIdentity.all
+    #    @all.each do |identity|
+    #      if identity.user == current_user
+    #        identities << identity # show user's identities
+    #      end
+    # @identities = identities
+
+    render json: current_profile
   end
 
   def create

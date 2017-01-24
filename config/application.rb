@@ -12,7 +12,7 @@ require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
-gem 'rack-cors', :require => 'rack/cors'
+require 'rack/cors'
 
 
 # Require the gems listed in Gemfile, including any gems
@@ -30,12 +30,12 @@ module FlashDash
     # Skip views, helpers and assets when generating a new resource.
   #   config.api_only = true
    #
-   config.middleware.insert_before 0, Rack::Cors do
+   config.middleware.use Rack::Cors do
      allow do
        origins '*'
        resource '*',
-         :headers => '*',
-         methods: [:get, :post, :put, :patch, :delete, :options, :head]
+        :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+        :methods => [:get, :post, :options, :delete, :put]
      end
    end
 

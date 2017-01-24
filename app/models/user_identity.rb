@@ -1,5 +1,5 @@
 class UserIdentity < ApplicationRecord
-  belongs_to :user
+  belongs_to :profile
 
   def self.find_with_omniauth(auth)
     find_by(
@@ -10,7 +10,7 @@ class UserIdentity < ApplicationRecord
 
   def self.create_with_omniauth(auth)
     create(
-    user_id: 1,
+    user_id: current_profile.id,
     uid: auth['uid'],
     provider: auth['provider'],
     token: auth['credentials']['token'],
