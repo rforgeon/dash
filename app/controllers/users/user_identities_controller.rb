@@ -1,4 +1,5 @@
 class Users::UserIdentitiesController < ApplicationController
+  before_action :authenticate_user!
 
 
   def index
@@ -10,7 +11,7 @@ class Users::UserIdentitiesController < ApplicationController
     #      end
     # @identities = identities
 
-    render json: current_profile
+    render json: current_user
   end
 
   def create
