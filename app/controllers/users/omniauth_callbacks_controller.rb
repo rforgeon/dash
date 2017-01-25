@@ -17,13 +17,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   end
 
-  def find_with_token(token)
-    @user = User.find_by(
-    tokens: token
-    )
-    return @user
-  end
-
   def set_user(user)
     auth = request.env['omniauth.auth']
 
@@ -31,21 +24,30 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user.lyft_refresh_token = auth['credentials']['refresh_token'],
     user.lyft_expires_at = auth['credentials']['expires_at']
 
+    user.save
   end
 
 
   def redirect_callbacks
     binding.pry
-    #redirect_to :controller => :user_identities, :action => :index
 
     #create user Identity
-    @auth = request.env['omniauth.auth']
-    @token = request.env['omniauth.params']['state']
+    @origin_url = request.env['omniauth.params']['auth_origin_url']
+    @client = request.env['omniauth.params']['client']
+    @id = request.env['omniauth.params']['id']
 
-    @user = find_with_token(@token)
+    @user = User.find(@id)
+    @userCheck = @user.tokens.values.any? { @client }
 
-    render json: @token
-    #redirect_to "http://localhost:3001"
+    if @userCheck
+
+      set_user(@user)
+      redirect_to @origin_url
+
+    else
+      render json: "Access Denied"
+    end
+
 
     end
 
