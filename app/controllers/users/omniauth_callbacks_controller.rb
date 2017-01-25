@@ -1,8 +1,8 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-  include DeviseTokenAuth::Concerns::SetUserByToken
-
-  before_action :authenticate_user!
+  # include DeviseTokenAuth::Concerns::SetUserByToken
+  #
+  # before_action :authenticate_user!
 
   def lyft
     binding.pry
@@ -15,55 +15,38 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def omniauth_success
     binding.pry
 
-    #create user Identity
-    @auth = request.env['omniauth.auth']
+  end
 
-    render json: @auth
+  def find_with_token(token)
+    @user = User.find_by(
+    tokens: token
+    )
+    return @user
+  end
+
+  def set_user(user)
+    auth = request.env['omniauth.auth']
+
+    user.lyft_token = auth['credentials']['token'],
+    user.lyft_refresh_token = auth['credentials']['refresh_token'],
+    user.lyft_expires_at = auth['credentials']['expires_at']
 
   end
 
 
   def redirect_callbacks
-    #binding.pry
+    binding.pry
     #redirect_to :controller => :user_identities, :action => :index
 
     #create user Identity
-    #@auth = request.env['omniauth.auth']
+    @auth = request.env['omniauth.auth']
+    @token = request.env['omniauth.params']['state']
 
-    render json: current_user
+    @user = find_with_token(@token)
+
+    render json: @token
     #redirect_to "http://localhost:3001"
 
-   #
-  #   #Find an identity here
-  #   @user_identity = UserIdentity.find_with_omniauth(@auth)
-   #
-  #   if @user_identity.nil?
-  #     # If no identity was found, create a brand new one here
-  #     @user_identity = UserIdentity.create_with_omniauth(@auth)
-  #   end
-   #
-  #   if profile_signed_in?
-  #     if @user_identity.user == current_user
-  #       # User is signed in so they are trying to link an identity with their
-  #       # account. But we found the identity and the user associated with it
-  #       # is the current user. So the identity is already associated with
-  #       # this user. So let's display an error message.
-  #       render json: "Already linked that account!"
-  #     else
-  #       # The identity is not associated with the current_user so lets
-  #       # associate the identity
-  #       @user_identity.user = current_user
-  #       @user_identity.save
-  #       render json: "Successfully linked that account!"
-  #     end
-  #   else
-  #     # No user associated with the identity so we need to create a new one
-  #     #redirect_to new_user_url
-  #     render json: "No user associated with the identity. Please finish registering"
-  #   end
-   #
-  #   render json: @user_identity
-   #
     end
 
 
