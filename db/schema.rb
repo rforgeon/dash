@@ -12,16 +12,8 @@
 
 ActiveRecord::Schema.define(version: 20170124193725) do
 
-  create_table "user_identities", force: :cascade do |t|
-    t.string   "user_id"
-    t.string   "provider"
-    t.string   "token"
-    t.string   "refresh_token"
-    t.integer  "expires_at"
-    t.string   "uid"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
@@ -49,9 +41,9 @@ ActiveRecord::Schema.define(version: 20170124193725) do
     t.string   "lyft_token"
     t.string   "lyft_refresh_token"
     t.string   "lyft_expires_at"
-    t.index ["email"], name: "index_users_on_email"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+    t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   end
 
 end
