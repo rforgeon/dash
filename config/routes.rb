@@ -11,11 +11,11 @@ Rails.application.routes.draw do
         resources :user_identities, only: [:create,:index]
         get '/create_id', :to => "user_identities#create"
 
-
-
     end
 
-
+    scope '/hooks', :controller => :hooks do
+      post :ride_event_callback
+    end
 
 
 
