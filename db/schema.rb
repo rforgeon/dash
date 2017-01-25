@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170124193725) do
+ActiveRecord::Schema.define(version: 20170125221722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lyft_metrics", force: :cascade do |t|
+    t.string   "ride_id"
+    t.integer  "eta_seconds"
+    t.string   "pickup_time"
+    t.string   "dropoff_time"
+    t.integer  "eta_dif_seconds"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
