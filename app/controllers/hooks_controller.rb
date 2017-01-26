@@ -8,7 +8,7 @@ class HooksController
     if params['pickup'].present?
       #if parmas['event_id'].isUnique
       # Create a new Survey object based on the received parameters...
-      lyftRide = Lyft_Metric.new(:ride_id => params['ride_id'])
+      lyftRide = LyftMetric.new(:ride_id => params['ride_id'])
 
       #lyftRide.user_id = current_user.id ##not sure how to capture this
       lyftRide.eta_seconds = params['destination']['eta_seconds']
@@ -31,7 +31,7 @@ class HooksController
 
     # The webhook doesn't require a response but let's make sure
     # we don't send anything
-    #render :nothing => true
+    render :nothing => true
   end
 
 
