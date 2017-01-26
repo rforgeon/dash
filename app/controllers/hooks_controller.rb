@@ -2,7 +2,6 @@ class HooksController
 
   def ride_event_callback
 
-    
 
     # If the body contains the survey_name parameter...
     # if params[:survery_name].present?
@@ -15,7 +14,7 @@ class HooksController
 
     # The webhook doesn't require a response but let's make sure
     # we don't send anything
-    #render :nothing => true
+    render :nothing => true
   end
 
 end
