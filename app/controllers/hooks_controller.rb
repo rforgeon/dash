@@ -20,7 +20,7 @@ class HooksController
 
     end
 
-    if params[:dropoff].present?
+    if params['dropoff'].present?
       lyftRide = Lyft_Metric.find_by ride_id: params['ride_id']
 
       lyftRide.dropoff_time = params['dropoff']['time']
@@ -31,7 +31,7 @@ class HooksController
 
     # The webhook doesn't require a response but let's make sure
     # we don't send anything
-    render :nothing => true
+    #render :nothing => true
   end
 
 
