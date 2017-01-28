@@ -1,10 +1,10 @@
 class Api::MetricsController < ApplicationController
 
 
-  def show
-    metrics = Lyft_Metric.all
+  def ride_metric
+    #metrics = LyftMetric.all
 
-    render json: metrics
+    render json: params
   end
 
 

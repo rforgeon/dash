@@ -6,14 +6,13 @@ Rails.application.routes.draw do
       resources :users, only: [:index, :show]
 
       scope '/metrics', :controller => :metrics do
-        get :show
+        post :ride_metric
       end
 
-    end
+      scope '/hooks', :controller => :hooks do
+        post :ride_event_callback
+      end
 
-
-    scope '/hooks', :controller => :hooks do
-      post :ride_event_callback
     end
 
 
