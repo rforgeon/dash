@@ -46,7 +46,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @userCheck
 
       #set_user(@user)
-      binding.pry
       auth = request.env['omniauth.auth']
       @user.lyft_token = auth['credentials']['token'],
       @user.lyft_refresh_token = auth['credentials']['refresh_token'],
@@ -54,10 +53,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       @user.save
 
-      # trimmedToken = @user.lyft_token[/\\([^\\]+)\\/]
-      # @user.lyft_token = trimmedToken
-      #
-      # @user.save
+      trimmedToken = @user.lyft_token.split(',')[0][2..-2]
+      @user.lyft_token = trimmedToken
+
+      @user.save
 
       redirect_to @origin_url
 
