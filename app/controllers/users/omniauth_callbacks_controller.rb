@@ -17,9 +17,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   end
 
-  def set_user(user)
-    auth = request.env['omniauth.auth']
+  def trimmed_token
+    token = request.env['omniauth.auth']['credentials']['token']
+    return token.slice!(2..334)
+  end
 
+  def set_user(user)
+    binding.pry
+    auth = request.env['omniauth.auth']
     user.lyft_token = auth['credentials']['token'],
     user.lyft_refresh_token = auth['credentials']['refresh_token'],
     user.lyft_expires_at = auth['credentials']['expires_at']
@@ -40,7 +45,20 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @userCheck
 
-      set_user(@user)
+      #set_user(@user)
+      binding.pry
+      auth = request.env['omniauth.auth']
+      @user.lyft_token = auth['credentials']['token'],
+      @user.lyft_refresh_token = auth['credentials']['refresh_token'],
+      @user.lyft_expires_at = auth['credentials']['expires_at']
+
+      @user.save
+
+      # trimmedToken = @user.lyft_token[/\\([^\\]+)\\/]
+      # @user.lyft_token = trimmedToken
+      #
+      # @user.save
+
       redirect_to @origin_url
 
     else
