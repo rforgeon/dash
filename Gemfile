@@ -51,6 +51,8 @@ gem 'devise_token_auth'
 
 gem 'pg'
 
+gem 'yelp', require: 'yelp'
+
 
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
