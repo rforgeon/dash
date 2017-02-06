@@ -56,6 +56,15 @@ gem 'yelp', require: 'yelp'
 #server side rendering for client
 gem "react_on_rails", "~> 6"
 
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
+
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 2.7.2'
+
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -76,3 +85,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'mini_racer', platforms: :ruby

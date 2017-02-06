@@ -74,7 +74,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     token_example = "AAAABYl3lLCwkBr7MQPpV0UsXqK1CNKDO0Q5jD3YhUp1JTEewceepsWK7hm7ArX7jJgt1xYDban7-Wb5B08diXJGiC6bhfRy4hVcD0Y3yEtt6T1PtorIvz5gQch3nNSdDyhi1HM00dZ4vTegf6w0JsLmJSRlDT2lyZd9wA4PXS3BesOzIJ7uS-YaiZZP1xHp9DGdkjPoZSU8tc-FIk9K4JBtRlKKkwtQcnQ3ed9nQBMzxhYDDgP-3u3zVv07gGQ-CDGMC9hUGrsWcR2uXPfW0M7hmLV-OvZS_31rJmpdYmra_u3BEMB8_m53UKo_1xMF0STZVKz7T"
 
-    redirect_to "http://localhost:3001/#/dashboard/#/1"
+    redirect_to "http://localhost:3001/#/dashboard"
 
 
 

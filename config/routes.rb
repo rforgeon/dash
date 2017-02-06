@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  get 'hello_world', to: 'hello_world#index'
     namespace 'api' do
       mount_devise_token_auth_for 'User', at: 'auth', controllers: { omniauth_callbacks: "users/omniauth_callbacks" }, defaults: { format: :json }
 
