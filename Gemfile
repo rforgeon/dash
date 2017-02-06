@@ -53,6 +53,8 @@ gem 'pg'
 
 gem 'yelp', require: 'yelp'
 
+#server side rendering for client
+gem "react_on_rails", "~> 6"
 
 group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
