@@ -58,7 +58,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       @user.save
 
-      redirect_to @origin_url
+      redirect_to "http://localhost:3001/dashboard?token=#{trimmedToken}"
 
     else
       render json: "Access Denied"

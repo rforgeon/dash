@@ -8,7 +8,7 @@ class Api::YelpController < ApplicationController
   def search
 
     coordinates = {latitude: params['lat'], longitude: params['lng'], accuracy: 1}
-    render json: Yelp.client.search_by_coordinates(coordinates, {sort: 1, limit: 1, radius_filter: 10 })
+    render json: Yelp.client.search_by_coordinates(coordinates, { limit: 1, radius_filter: 10 })
   end
 
 
