@@ -35,7 +35,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def redirect_callbacks
     # #create user Identity
-    origin_url = request.env['omniauth.params']['auth_origin_url']
+    #origin_url = request.env['omniauth.params']['auth_origin_url']
     # @client = request.env['omniauth.params']['client']
     # @id = request.env['omniauth.params']['id']
     #
