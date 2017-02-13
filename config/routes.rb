@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
       scope '/yelp', :controller => :yelp do
         post :search
+        post :search_recs
       end
 
       resources :lyft

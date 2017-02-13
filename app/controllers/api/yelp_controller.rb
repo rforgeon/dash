@@ -2,13 +2,18 @@ class Api::YelpController < ApplicationController
 
   require 'yelp'
   require 'json'
-  require 'bigdecimal'
 
 
   def search
 
-    coordinates = {latitude: params['lat'], longitude: params['lng'], accuracy: 1}
-    render json: Yelp.client.search_by_coordinates(coordinates, { limit: 1, radius_filter: 10 })
+    coordinates = {latitude: params['lat'], longitude: params['lng']}
+    render json: Yelp.client.search_by_coordinates(coordinates, { limit: 3, radius_filter: 30 })
+  end
+
+  def search_recs
+
+    render json: Yelp.client.search(params['location'], { limit: 3, term: params['category'] })
+
   end
 
 

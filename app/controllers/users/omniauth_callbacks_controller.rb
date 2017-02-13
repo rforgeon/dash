@@ -34,35 +34,34 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 
   def redirect_callbacks
-
-    #create user Identity
-    @origin_url = request.env['omniauth.params']['auth_origin_url']
-    @client = request.env['omniauth.params']['client']
-    @id = request.env['omniauth.params']['id']
-
-    @user = User.find(@id)
-    @userCheck = @user.tokens.values.any? { @client }
-
-    if @userCheck
+    # #create user Identity
+    origin_url = request.env['omniauth.params']['auth_origin_url']
+    # @client = request.env['omniauth.params']['client']
+    # @id = request.env['omniauth.params']['id']
+    #
+    # @user = User.find(@id)
+    # @userCheck = @user.tokens.values.any? { @client }
+    #
+    # if @userCheck
 
       #set_user(@user)
       auth = request.env['omniauth.auth']
-      @user.lyft_token = auth['credentials']['token'],
-      @user.lyft_refresh_token = auth['credentials']['refresh_token'],
-      @user.lyft_expires_at = auth['credentials']['expires_at']
+      lyft_token = auth['credentials']['token']
+      # @user.lyft_refresh_token = auth['credentials']['refresh_token'],
+      # @user.lyft_expires_at = auth['credentials']['expires_at']
+      #
+      # @user.save
 
-      @user.save
+      #trimmedToken = lyft_token.split(',')[0][2..-2]
+      # @user.lyft_token = trimmedToken
+      #
+      # @user.save
 
-      trimmedToken = @user.lyft_token.split(',')[0][2..-2]
-      @user.lyft_token = trimmedToken
+      redirect_to "#{origin_url}?token=#{lyft_token}"
 
-      @user.save
-
-      redirect_to "http://localhost:3001/dashboard?token=#{trimmedToken}"
-
-    else
-      render json: "Access Denied"
-    end
+    # else
+    #   render json: "Access Denied"
+    # end
 
 
     end
