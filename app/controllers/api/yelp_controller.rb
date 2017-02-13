@@ -19,5 +19,9 @@ class Api::YelpController < ApplicationController
 
   end
 
+  def params
+    @params
+  end  
+
 
 end
