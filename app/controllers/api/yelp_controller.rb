@@ -5,17 +5,17 @@ class Api::YelpController < ApplicationController
 
 
   def search (params = {})
-    # @params = params
-    var lat = params['lat']
-    var lng = params['lng']
+    @params = params
+    var lat = @parmas['lat']
+    var lng = @parmas['lng']
     coordinates = {latitude: lat, longitude: lng }
     render json: Yelp.client.search_by_coordinates(coordinates, { limit: 3, radius_filter: 30 })
   end
 
   def search_recs (params = {})
-    # @params = params
-    var location = params['location']
-    var category = params['category']
+    @params = params
+    var location = @parmas['location']
+    var category = @parmas['category']
 
     render json: Yelp.client.search(location, { limit: 3, term: category })
 
