@@ -57,7 +57,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       #
       # @user.save
 
-      redirect_to "#{origin_url}?token=#{lyft_token}"
+      redirect_to "#{origin_url}&token=#{lyft_token}"
 
     # else
     #   render json: "Access Denied"
