@@ -57,8 +57,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       #
       # @user.save
 
-      binding.pry
-
       if origin_url == 'http://mytopstop.com/'
         redirect_to "#{origin_url}?token=#{lyft_token}"
 
