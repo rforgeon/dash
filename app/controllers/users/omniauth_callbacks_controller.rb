@@ -57,7 +57,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       #
       # @user.save
 
-      redirect_to "#{origin_url}&token=#{lyft_token}"
+      if origin_url.length == 13
+        redirect_to "#{origin_url}?token=#{lyft_token}"
+
+      else
+        redirect_to "#{origin_url}&token=#{lyft_token}"
+
+      end
 
     # else
     #   render json: "Access Denied"
