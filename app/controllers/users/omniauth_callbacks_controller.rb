@@ -57,7 +57,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       #
       # @user.save
 
-      if origin_url == 'http://mytopstop.com/'
+      if origin_url == 'http://mytopstop.com/' || 'http://localhost:3001/'
         redirect_to "#{origin_url}?token=#{lyft_token}"
 
       else
